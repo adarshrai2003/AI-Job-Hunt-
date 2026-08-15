@@ -1,56 +1,140 @@
 # jobhunt configuration. Everything tunable lives here — no editing Python.
 #
+# Tuned for Adarsh Kumar Rai's resume:
+# B.Tech CSE (Data Science), 2025 graduate, fresher/early-career.
+# Primary stack: Python, C++, C, ReactJS, NodeJS, ExpressJS, JavaScript,
+# HTML/CSS, SQL/MySQL, DSA, DBMS, OS and OOP.
+# Experience: Python Developer Intern + front-end development training.
+#
 # Tune `filters` first. It is deterministic, free, and it is what keeps the
-# LLM bill small: roughly 2000 raw postings -> 40 candidates before a single
-# token is spent.
+# LLM bill small.
 
 filters:
   # Title regexes, matched case-insensitively against the job title only.
   # A title must match at least one include AND zero excludes.
-  #
-  # Gotcha: "sde" as a bare regex does NOT match "Software Development
-  # Engineer" — different words entirely. Use \bsde\b for the acronym and
-  # list the spelled-out variants separately, as below.
   include_titles:
-    - '\b(software|backend|back-end|server|platform|infrastructure|infra|systems|distributed|cloud)\b.*\bengineer\b'
-    - '\bengineer\b.*\b(backend|back-end|platform|infrastructure|infra|systems|distributed)\b'
+    # Core software-development roles
+    - '\bsoftware\s+(engineer|developer)\b'
+    - '\bsoftware\s+development\s+engineer\b'
     - '\bsde\b'
     - '\bsde\s*-?\s*(i{1,3}|[123])\b'
-    - 'software development engineer'
-    - 'software engineer'
-    - 'site reliability engineer'
-    - '\bsre\b'
-    - 'member of technical staff'
-    # systems / networking track — matches your DPDK, packet-processing and
-    # kernel background. Drop these if you widen away from low-level work.
-    - '\bnetwork(ing)?\s+(software\s+)?engineer\b'
-    - '\b(kernel|embedded|firmware|driver|packet|dataplane|data plane)\b.*\bengineer\b'
-    - '\bengineer\b.*\b(kernel|packet|dataplane|networking|performance)\b'
-    - '\bperformance engineer\b'
-    - '\bsystems engineer\b'
-    - '\bc\+\+\b.*\bengineer\b'
-    - '\bengineer\b.*\bc\+\+\b'
+    - '\bapplication\s+(engineer|developer)\b'
+    - '\bproduct\s+(engineer|developer)\b'
+
+    # Python / backend
+    - '\bpython\s+(developer|engineer)\b'
+    - '\bbackend\s+(developer|engineer)\b'
+    - '\bback[-\s]?end\s+(developer|engineer)\b'
+    - '\bbackend\b.*\bengineer\b'
+    - '\bengineer\b.*\bbackend\b'
+    - '\bnode\.?js\s+(developer|engineer)\b'
+    - '\bexpress\.?js\s+(developer|engineer)\b'
+
+    # Full-stack
+    - '\bfull[-\s]?stack\s+(developer|engineer)\b'
+    - '\bfull[-\s]?stack\b.*\bengineer\b'
+    - '\bengineer\b.*\bfull[-\s]?stack\b'
+
+    # Frontend / React — included because the resume contains ReactJS,
+    # JavaScript, HTML and CSS plus front-end development experience.
+    - '\bfrontend\s+(developer|engineer)\b'
+    - '\bfront[-\s]?end\s+(developer|engineer)\b'
+    - '\breact(\.js|js)?\b.*\b(developer|engineer)\b'
+    - '\b(developer|engineer)\b.*\breact(\.js|js)?\b'
+    - '\bweb\s+(developer|engineer)\b'
+
+    # Entry-level / graduate software roles
+    - '\bgraduate\s+(software\s+)?(engineer|developer)\b'
+    - '\bentry[-\s]?level\s+(software\s+)?(engineer|developer)\b'
+    - '\bjunior\s+(software\s+)?(engineer|developer)\b'
+    - '\bassociate\s+(software\s+)?(engineer|developer)\b'
+    - '\bsoftware\s+engineer\s+i\b'
+    - '\bsoftware\s+developer\s+i\b'
+
+    # General engineering titles that can fit the CS/software profile
+    - '\bdeveloper\b.*\b(engineer|software|application|backend|full[-\s]?stack)\b'
+    - '\bengineer\b.*\b(software|application|backend|full[-\s]?stack)\b'
+
+    # Data/SQL roles — limited to roles supported by the resume's Python,
+    # SQL/MySQL and Data Science background.
+    - '\bdata\s+analyst\b'
+    - '\bjunior\s+data\s+analyst\b'
+    - '\bassociate\s+data\s+analyst\b'
+    - '\bdata\s+analytics?\s+(engineer|developer)\b'
+    - '\bsql\s+(developer|engineer)\b'
+    - '\bdatabase\s+(developer|engineer)\b'
+
+    #internships — included because the resume targets early-career roles.
+    - '\bintern\b'
+    - '\b(intern|internship|apprentice|trainee)\b'
 
   # Anything matching these is dropped even if an include matched.
   exclude_titles:
-    - '\b(staff|principal|distinguished|fellow|architect)\b'      # too senior for now
-    # "Senior" at 2.5 years is a consistent 3-4 from the screener — dropping it
-    # here is free, dropping it after an LLM call is not. Delete this line once
-    # you are ~4 years in, or if you want to stretch-apply anyway.
+    - '\b(staff|principal|distinguished|fellow|architect)\b'
     - '\bsenior\b'
+    - '\b(lead|tech\s+lead|team\s+lead)\b'
     - '\b(director|vp|vice president|head of|chief|cto)\b'
     - '\b(manager|management)\b'
-    - '\b(intern|internship|apprentice|trainee)\b'                # too junior
-    - '\b(sales|account executive|marketing|recruit|support|success)\b'
-    - '\b(frontend|front-end|ios|android|mobile|game|designer)\b' # wrong discipline
-    - '\b(data scientist|machine learning scientist|research scientist)\b'
+ 
+    # Non-software disciplines.
+    - '\b(sales|account executive|business development|marketing|recruit|recruiter)\b'
+    - '\b(customer support|technical support|support engineer)\b'
+    - '\b(customer success|account manager)\b'
+
+    # Avoid unrelated engineering tracks.
+    - '\b(network|networking)\s+(engineer|developer)\b'
+    - '\bsite reliability engineer\b'
+    - '\bsre\b'
+    - '\bdevops\b'
+    - '\bcloud engineer\b'
+    - '\binfrastructure engineer\b'
+    - '\bplatform engineer\b'
+    - '\bembedded\b'
+    - '\bfirmware\b'
+    - '\bkernel\b'
+    - '\bdriver\b'
+    - '\bhardware\b'
+    - '\bdata scientist\b'
+    - '\bmachine learning scientist\b'
+    - '\bresearch scientist\b'
+    - '\bmachine learning engineer\b'
+    - '\bai engineer\b'
+    - '\bdeep learning\b'
+    - '\bcomputer vision\b'
+    - '\bnlp\b'
+
+    # Specialized frontend/mobile/game/design roles not aligned with the
+    # target software profile.
+    - '\bios\b'
+    - '\bandroid\b'
+    - '\bmobile developer\b'
+    - '\bgame developer\b'
+    - '\bgame engineer\b'
+    - '\bdesigner\b'
+    - '\bui/ux\b'
 
   # Substrings matched against "<location> <title>", case-insensitive.
-  # Leave empty to accept every location.
+  # India-focused because the resume targets Indian graduate/early-career roles.
   locations:
+    - india
     - bangalore
     - bengaluru
-    - india
+    - noida
+    - gurgaon
+    - gurugram
+    - remote
+    - hyderabad
+    - pune
+    - chennai
+    - delhi
+    - mumbai
+    - kolkata
+    - patna
+    - bhubaneswar
+    - ahmedabad
+    - jaipur
+    - chandigarh
+    - kochi
 
   # If true, anything reading as remote passes the location gate.
   allow_remote: true
@@ -59,12 +143,25 @@ filters:
   # Boards often re-stamp `updated_at`, so this is a soft signal, not a promise.
   max_age_days: 30
 
-# --- LLM stages -------------------------------------------------------------
-screen_batch_size: 8      # jobs per screening call. Higher = cheaper, sloppier.
-screen_jd_chars: 1400     # JD truncation for screening
-draft_jd_chars: 6000      # JD truncation for drafting
-score_threshold: 7.0      # below this, no draft and no digest slot
-max_per_digest: 5         # hard cap on expensive draft calls per run
+# --------------------------------------------------------------------------
+# AI SCREENING
+# --------------------------------------------------------------------------
+
+# Number of jobs processed per screening call.
+screen_batch_size: 8
+
+# JD characters sent during the cheap screening stage.
+screen_jd_chars: 1400
+
+# More JD context available when drafting applications.
+draft_jd_chars: 6000
+
+# Keep reasonably strong matches.
+score_threshold: 6.0
+
+# Maximum jobs selected for the final digest.
+max_per_digest: 5
+
 
 # --- paths ------------------------------------------------------------------
 companies_file: companies.yaml

@@ -23,16 +23,24 @@
 # noise and makes the prefilter counts impossible to reason about.
 
 companies:
-  - {ats: greenhouse, slug: stripe,      name: Stripe}
-  - {ats: greenhouse, slug: databricks,  name: Databricks}
-  - {ats: greenhouse, slug: cloudflare,  name: Cloudflare}
-  - {ats: greenhouse, slug: figma,       name: Figma}
-  - {ats: greenhouse, slug: dropbox,     name: Dropbox}
-  - {ats: greenhouse, slug: coinbase,    name: Coinbase}
-  - {ats: greenhouse, slug: reddit,      name: Reddit}
-  - {ats: lever,      slug: voleon,      name: Voleon}
-
-  - {ats: ashby,      slug: openai,      name: OpenAI}
-  - {ats: ashby,      slug: ramp,        name: Ramp}
-  - {ats: ashby,      slug: linear,      name: Linear}
-  - {ats: ashby,      slug: vanta,       name: Vanta}
+- {ats: ashby, slug: opengov, name: OpenGov}
+- {ats: lever, slug: veeva, name: Veeva Systems}
+- {ats: lever, slug: stable-money1, name: Stable Money}
+- {ats: ashby, slug: ema, name: Ema}
+- {ats: ashby, slug: Niural, name: Niural}
+- {ats: ashby, slug: multiverse, name: Multiverse}
+- {ats: ashby, slug: checkout.com, name: Checkout.com}
+- {ats: lever, slug: educative, name: Educative}
+- {ats: lever, slug: weloglobal, name: Welo Global}
+- {ats: lever, slug: oomnitza, name: Oomnitza}
+- {ats: greenhouse, slug: knowbe4, name: KnowBe4}
+- {ats: greenhouse, slug: opendoor, name: Opendoor}
+- {ats: greenhouse, slug: yext, name: Yext}
+- {ats: greenhouse, slug: speechify, name: Speechify}
+- {ats: ashby, slug: reacher, name: Reacher}
+- {ats: lever, slug: drivetrain, name: Drivetrain}
+- {ats: lever, slug: spreetail, name: Spreetail}
+- {ats: lever, slug: smart-working-solutions, name: Smart Working Solutions}
+- {ats: lever, slug: gohighlevel, name: HighLevel}
+- {ats: lever, slug: accurate, name: Accurate Background}
+- {ats: lever, slug: 3pillarglobal, name: 3Pillar Global}
